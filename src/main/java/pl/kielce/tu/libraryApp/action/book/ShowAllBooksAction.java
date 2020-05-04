@@ -47,6 +47,7 @@ public class ShowAllBooksAction implements Action {
         return new ArrayList<>();
     }
 
+    //TODO refactor
     private String getHeader() {
         StringBuilder sb = new StringBuilder();
         sb.append("################################################## BOOKS ##################################################\n");
@@ -59,6 +60,7 @@ public class ShowAllBooksAction implements Action {
         return sb.toString();
     }
 
+    //TODO refactor
     private String getTableWithBooks(List<Book> books) {
         StringBuilder sb = new StringBuilder();
         for (Book book : books) {
@@ -66,10 +68,10 @@ public class ShowAllBooksAction implements Action {
             String author = book.getAuthor();
             String genre = book.getGenre().toString();
             String isbn = book.getIsbn();
-            sb.append(title).append(StringUtils.EMPTY.repeat(25 - title.length()));
-            sb.append(author).append(StringUtils.EMPTY.repeat(25 - author.length()));
-            sb.append(genre).append(StringUtils.EMPTY.repeat(25 - genre.length()));
-            sb.append(isbn).append(StringUtils.EMPTY.repeat(25 - isbn.length()));
+            sb.append(title).append(" ".repeat(30 - title.length()));
+            sb.append(author).append(" ".repeat(30 - author.length()));
+            sb.append(genre).append(" ".repeat(30 - genre.length()));
+            sb.append(isbn).append(" ".repeat(30 - isbn.length()));
         }
         return sb.toString();
     }
