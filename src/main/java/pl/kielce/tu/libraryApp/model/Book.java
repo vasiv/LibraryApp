@@ -1,6 +1,5 @@
 package pl.kielce.tu.libraryApp.model;
 
-import pl.kielce.tu.libraryApp.indentity.RandomIdentityManager;
 import pl.kielce.tu.libraryApp.model.enumeration.Genre;
 
 import java.io.Serializable;
@@ -12,14 +11,12 @@ public class Book implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private long id;
     private String isbn;
     private String title;
     private String author;
     private Genre genre;
 
     public Book(String title, String author, Genre genre, String isbn) {
-        id = RandomIdentityManager.generateNewId();
         this.isbn = isbn;
         this.title = title;
         this.author = author;

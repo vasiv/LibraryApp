@@ -1,6 +1,5 @@
 package pl.kielce.tu.libraryApp.model;
 
-import pl.kielce.tu.libraryApp.indentity.RandomIdentityManager;
 import pl.kielce.tu.libraryApp.model.enumeration.Role;
 
 import java.io.Serializable;
@@ -14,7 +13,6 @@ public class User implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private long id;
     private String firstName;
     private String lastName;
     private String personalId;
@@ -22,7 +20,6 @@ public class User implements Serializable {
     private List<Role> roles;
 
     public User(String firstName, String lastName, String personalId, String password, Role role) {
-        id = RandomIdentityManager.generateNewId();
         this.firstName = firstName;
         this.lastName = lastName;
         this.personalId = personalId;
