@@ -1,6 +1,5 @@
 package pl.kielce.tu.libraryApp.action.book;
 
-import org.apache.commons.lang3.StringUtils;
 import pl.kielce.tu.libraryApp.action.Action;
 import pl.kielce.tu.libraryApp.config.Config;
 import pl.kielce.tu.libraryApp.model.Book;
@@ -8,28 +7,29 @@ import pl.kielce.tu.libraryApp.model.enumeration.Role;
 import pl.kielce.tu.libraryApp.service.BookService;
 import pl.kielce.tu.libraryApp.util.BookUtil;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  * @author ciepluchs
  */
-public class ShowAllBooksAction implements Action {
+public class ShowAuthorBooks implements Action {
 
-    private static final String HEADER = "################################################## BOOKS ##################################################";
+    private static final String HEADER = "############################################## AUTHOR BOOKS ##############################################";
     private static final List<Role> ALLOWED_ROLES = Arrays.asList(Role.READER, Role.LIBRARIST, Role.ADMINISTRATOR);
-    private static final String DISPLAY_NAME = "Show all books";
+    private static final String DISPLAY_NAME = "Show author books";
     private BookService bookService;
 
-    public ShowAllBooksAction(Config config) {
+    public ShowAuthorBooks(Config config) {
         bookService = config.getBookService();
     }
 
     @Override
     public void execute() {
-        List<Book> allBooks = bookService.getAllBooks();
-        String tableWithBooks = BookUtil.getTableWithBooks(allBooks);
+        String author = getAuthorInputFromUser();
+        List<Book> authorBooks = bookService.getAuthorBooks(author);
+        String tableWithBooks = BookUtil.getTableWithBooks(authorBooks);
         System.out.println(HEADER);
         System.out.println(tableWithBooks);
     }
@@ -42,6 +42,12 @@ public class ShowAllBooksAction implements Action {
     @Override
     public List<Role> getAllowedRoles() {
         return ALLOWED_ROLES;
+    }
+
+    private String getAuthorInputFromUser() {
+        System.out.println("Author: ");
+        Scanner input = new Scanner(System.in);
+        return input.nextLine();
     }
 
 }

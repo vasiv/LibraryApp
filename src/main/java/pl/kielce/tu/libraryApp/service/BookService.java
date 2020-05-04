@@ -8,5 +8,6 @@ public interface BookService {
 
     void addNewBook(Book book);
     List<Book> getAllBooks();
+    List<Book> getAuthorBooks(String author);
 
 }

@@ -26,4 +26,9 @@ public class HazelcastBookService implements BookService {
     public List<Book> getAllBooks() {
         return bookRepository.findAll();
     }
+
+    @Override
+    public List<Book> getAuthorBooks(String author) {
+        return bookRepository.findByAuthor(author);
+    }
 }

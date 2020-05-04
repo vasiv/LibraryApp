@@ -17,6 +17,7 @@ import java.util.Scanner;
  */
 public class AddBookAction implements Action {
 
+    private static final String HEADER = "################################################ ADD BOOK ################################################";
     private static final List<Role> ALLOWED_ROLES = Arrays.asList(Role.LIBRARIST, Role.ADMINISTRATOR);
     private static final String DISPLAY_NAME = "Add book";
     private BookService bookService;
@@ -27,7 +28,7 @@ public class AddBookAction implements Action {
 
     @Override
     public void execute() {
-        System.out.println(getHeader());
+        System.out.println(HEADER);
         Book bookToBeAdded = getBookToBeAdded();
         bookService.addNewBook(bookToBeAdded);
         System.out.println("Book added!");
@@ -43,12 +44,8 @@ public class AddBookAction implements Action {
         return ALLOWED_ROLES;
     }
 
-    @Override
-    public List<Action> getSubActions() {
-        return new ArrayList<>();
-    }
-
     private Book getBookToBeAdded(){
+        System.out.println("Fill books information: ");
         Scanner input = new Scanner(System.in);
         System.out.println("Title: ");
         String title = input.nextLine();
@@ -68,12 +65,5 @@ public class AddBookAction implements Action {
         }
         int selectedGenre = input.nextInt();
         return genres.get(selectedGenre-1);
-    }
-
-    private String getHeader() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("################################################ ADD BOOK ################################################\n");
-        sb.append("Fill books information: ");
-        return sb.toString();
     }
 }

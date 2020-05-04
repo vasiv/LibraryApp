@@ -9,5 +9,4 @@ public interface Action {
     void execute();
     String getDisplayName();
     List<Role> getAllowedRoles();
-    List<Action> getSubActions();
 }

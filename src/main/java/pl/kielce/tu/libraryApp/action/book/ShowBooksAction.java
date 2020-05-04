@@ -14,23 +14,23 @@ import java.util.Scanner;
  */
 public class ShowBooksAction implements Action {
 
+    private static final String HEADER = "################################################## BOOKS ##################################################";
     private static final List<Role> ALLOWED_ROLES = Arrays.asList(Role.READER, Role.LIBRARIST, Role.ADMINISTRATOR);
     private static final String DISPLAY_NAME = "Show books";
     private static List<Action> subActions;
-    private static Config config;
 
     public ShowBooksAction(Config config) {
-        this.config = config;
-        subActions = Arrays.asList(new ShowAllBooksAction(config));
+        subActions = Arrays.asList(new ShowAllBooksAction(config), new ShowAuthorBooks(config));
     }
 
     @Override
     public void execute() {
         List<Action> availableActions = ActionHelper.getAvailableActions(subActions);
-        while(true){
+        System.out.println(HEADER);
+        while (true) {
             displayMenu(availableActions);
             String selectedOption = getSelectedOption();
-            if(ActionHelper.isBackOptionSelected(selectedOption)){
+            if (ActionHelper.isBackOptionSelected(selectedOption)) {
                 return;
             } else {
                 ActionHelper.getSelectedAciton(availableActions, selectedOption).execute();
@@ -44,7 +44,6 @@ public class ShowBooksAction implements Action {
     }
 
     private void displayMenu(List<Action> availableActions) {
-        System.out.println("################################################## BOOKS ##################################################\n");
         int i = 0;
         for (Action action : availableActions) {
             System.out.println(++i + ") " + action.getDisplayName());
@@ -61,11 +60,6 @@ public class ShowBooksAction implements Action {
     @Override
     public List<Role> getAllowedRoles() {
         return ALLOWED_ROLES;
-    }
-
-    @Override
-    public List<Action> getSubActions() {
-        return subActions;
     }
 
 }
