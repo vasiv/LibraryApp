@@ -55,7 +55,9 @@ public class AddBookAction implements Action {
         String isbn = input.nextLine();
         System.out.println("Genre: (enter number)");
         Genre genre = getGenreInput(input);
-        return new Book(title, author, genre, isbn);
+        System.out.println("Quantity: ");
+        int quantity = input.nextInt();
+        return new Book(title, author, genre, isbn, quantity);
     }
 
     private Genre getGenreInput(Scanner input){

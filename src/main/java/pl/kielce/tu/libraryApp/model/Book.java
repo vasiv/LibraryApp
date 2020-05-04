@@ -11,16 +11,18 @@ public class Book implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    private String isbn;
     private String title;
     private String author;
     private Genre genre;
+    private String isbn;
+    private int quantity;
 
-    public Book(String title, String author, Genre genre, String isbn) {
-        this.isbn = isbn;
+    public Book(String title, String author, Genre genre, String isbn, int quantity) {
         this.title = title;
         this.author = author;
         this.genre = genre;
+        this.isbn = isbn;
+        this.quantity = quantity;
     }
 
     public String getIsbn() {
@@ -53,5 +55,13 @@ public class Book implements Serializable {
 
     public void setGenre(Genre genre) {
         this.genre = genre;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

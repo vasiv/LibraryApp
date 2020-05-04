@@ -9,7 +9,7 @@ public interface BookRepository {
     void add(Book book);
     List<Book> findAll();
     List<Book> findByAuthor(String author);
-//    void update(Persistable persistable);
+    void update(Book book);
 //    void delete(Persistable persistable);
 //    List<Persistable> find();
 }

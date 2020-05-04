@@ -9,6 +9,7 @@ import pl.kielce.tu.libraryApp.model.Book;
 import pl.kielce.tu.libraryApp.repository.BookRepository;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 /**
@@ -17,19 +18,16 @@ import java.util.List;
 public class HazelcastBookRepository implements BookRepository {
 
     private static final String BOOK = "book";
-    private static final String BOOK_ID = "bookId";
     private static final String AUTHOR = "author";
-    private IMap<Long, Book> map;
-    private FlakeIdGenerator idGenerator;
+    private IMap<String, Book> map;
 
     public HazelcastBookRepository(HazelcastInstance hazelcastInstance) {
         map = hazelcastInstance.getMap(BOOK);
-        idGenerator = hazelcastInstance.getFlakeIdGenerator(BOOK_ID);
     }
 
     @Override
     public void add(Book book) {
-        map.put(idGenerator.newId(), book);
+        map.put(book.getIsbn(), book);
     }
 
     @Override
@@ -43,4 +41,8 @@ public class HazelcastBookRepository implements BookRepository {
         return new ArrayList<>(map.values(Predicates.and(namePredicate)));
     }
 
+    @Override
+    public void update(Book book) {
+        map.put(book.getIsbn(), book);
+    }
 }

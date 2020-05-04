@@ -24,7 +24,7 @@ public class ActionHelper {
         return BACK_SYMBOL.equals(selectedOption) || BACK.equals(selectedOption);
     }
 
-    public static Action getSelectedAciton(List<Action> actions, String selectedOption){
+    public static Action getSelectedAction(List<Action> actions, String selectedOption){
         return actions.get(Integer.parseInt(selectedOption) - 1);
     }
 }

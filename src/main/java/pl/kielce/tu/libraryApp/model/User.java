@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * @author ciepluchs
  */
-public class User implements Serializable {
+public class User implements Serializable, Comparable<User> {
 
     private static final long serialVersionUID = 1L;
 
@@ -26,6 +26,15 @@ public class User implements Serializable {
         this.password = password;
         roles = new ArrayList<>();
         roles.add(role);
+    }
+
+    @Override
+    public int compareTo(User o) {
+        if (this.personalId.compareTo(o.personalId) == 0){
+            return 0;
+        } else {
+            return this.lastName.compareTo(lastName);
+        }
     }
 
     public List<Role> getRoles() {
