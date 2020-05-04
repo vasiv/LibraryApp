@@ -1,15 +1,14 @@
 package pl.kielce.tu.libraryApp.repository.hazelcast;
 
 import com.hazelcast.core.HazelcastInstance;
-import com.hazelcast.flakeidgen.FlakeIdGenerator;
 import com.hazelcast.map.IMap;
 import com.hazelcast.query.Predicate;
+import com.hazelcast.query.PredicateBuilder;
 import com.hazelcast.query.Predicates;
 import pl.kielce.tu.libraryApp.model.Book;
 import pl.kielce.tu.libraryApp.repository.BookRepository;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
 /**
@@ -36,9 +35,14 @@ public class HazelcastBookRepository implements BookRepository {
     }
 
     @Override
-    public List<Book> findByAuthor(String author) {
-        Predicate<String, String> namePredicate = Predicates.equal(AUTHOR, author);
-        return new ArrayList<>(map.values(Predicates.and(namePredicate)));
+    public List<Book> findBy(List<Predicate> predicates) {
+        if (predicates.size() == 3) {
+            return new ArrayList<>(map.values(Predicates.and(predicates.get(0), predicates.get(1), predicates.get(2))));
+        } else if (predicates.size() == 2) {
+            return new ArrayList<>(map.values(Predicates.and(predicates.get(0), predicates.get(1))));
+        } else {
+            return new ArrayList<>(map.values(Predicates.and(predicates.get(0))));
+        }
     }
 
     @Override

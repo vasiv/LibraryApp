@@ -17,17 +17,16 @@ public class MakeReservationAction implements Action {
     private static final String HEADER = "######################################## MAKE A RESERVATION ##############################################";
     private static final List<Role> ALLOWED_ROLES = Arrays.asList(Role.READER, Role.ADMINISTRATOR);
     private static final String DISPLAY_NAME = "Make a reservation";
-    private ReservationService resevationService;
-    private List<Action> subActions;
+    private ReservationService reservationService;
     private Book book;
 
     public MakeReservationAction(Config config) {
-        resevationService = config.getReservationService();
+        reservationService = config.getReservationService();
     }
 
     @Override
     public void execute() {
-        String operationResult = resevationService.makeReservation(book);
+        String operationResult = reservationService.makeReservation(book);
         System.out.println(operationResult);
     }
 

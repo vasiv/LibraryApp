@@ -1,7 +1,9 @@
 package pl.kielce.tu.libraryApp.util;
 
 import pl.kielce.tu.libraryApp.action.Action;
+import pl.kielce.tu.libraryApp.model.enumeration.Genre;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
@@ -30,6 +32,15 @@ public abstract class ViewUtil {
     public static int getSelectedNumber() {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextInt();
+    }
+
+    public static Genre getGenreInput(Scanner input){
+        List<Genre> genres = Arrays.asList(Genre.values());
+        for (int i = 0; i < genres.size(); i++) {
+            System.out.println(i + 1 + ")" + genres.get(i));
+        }
+        int selectedGenre = input.nextInt();
+        return genres.get(selectedGenre-1);
     }
 
 }

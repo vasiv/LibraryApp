@@ -20,7 +20,7 @@ public class ShowBooksAction implements Action {
     private List<Action> subActions;
 
     public ShowBooksAction(Config config) {
-        subActions = Arrays.asList(new ShowAllBooksAction(config), new ShowAuthorBooks(config));
+        subActions = Arrays.asList(new ShowAllBooksAction(config), new SearchBooks(config));
     }
 
     @Override
