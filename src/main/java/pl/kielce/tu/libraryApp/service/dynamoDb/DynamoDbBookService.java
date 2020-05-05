@@ -1,4 +1,4 @@
-package pl.kielce.tu.libraryApp.service.hazelcast;
+package pl.kielce.tu.libraryApp.service.dynamoDb;
 
 import pl.kielce.tu.libraryApp.model.Book;
 import pl.kielce.tu.libraryApp.repository.BookRepository;
@@ -10,26 +10,26 @@ import java.util.Map;
 /**
  * @author ciepluchs
  */
-public class HazelcastBookService implements BookService {
+public class DynamoDbBookService implements BookService {
 
     private BookRepository bookRepository;
 
-    public HazelcastBookService(BookRepository bookRepository) {
+    public DynamoDbBookService(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 
     @Override
     public void addNewBook(Book book) {
-        bookRepository.add(book);
+
     }
 
     @Override
     public List<Book> getAllBooks() {
-        return bookRepository.findAll();
+        return null;
     }
 
     @Override
     public List<Book> getBooksBySearchCriteria(Map<String, Object> searchCriteria) {
-        return bookRepository.findBy(searchCriteria);
+        return null;
     }
 }

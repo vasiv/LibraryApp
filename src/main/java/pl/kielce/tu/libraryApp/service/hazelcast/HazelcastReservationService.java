@@ -1,12 +1,10 @@
 package pl.kielce.tu.libraryApp.service.hazelcast;
 
-import pl.kielce.tu.libraryApp.config.Config;
 import pl.kielce.tu.libraryApp.model.Book;
 import pl.kielce.tu.libraryApp.model.Reservation;
 import pl.kielce.tu.libraryApp.model.User;
 import pl.kielce.tu.libraryApp.repository.BookRepository;
 import pl.kielce.tu.libraryApp.repository.ReservationRepository;
-import pl.kielce.tu.libraryApp.service.BookService;
 import pl.kielce.tu.libraryApp.service.ReservationService;
 import pl.kielce.tu.libraryApp.session.Session;
 
