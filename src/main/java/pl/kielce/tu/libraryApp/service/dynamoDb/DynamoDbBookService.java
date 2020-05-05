@@ -20,7 +20,7 @@ public class DynamoDbBookService implements BookService {
 
     @Override
     public void addNewBook(Book book) {
-
+        bookRepository.add(book);
     }
 
     @Override

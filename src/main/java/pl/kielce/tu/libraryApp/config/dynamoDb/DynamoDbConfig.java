@@ -28,9 +28,8 @@ public class DynamoDbConfig implements Config {
         AmazonDynamoDB client = AmazonDynamoDBClientBuilder.standard()
                 .withEndpointConfiguration(new AwsClientBuilder.EndpointConfiguration(SERVICE_ENDPOINT, US_WEST_2))
                 .build();
-        DynamoDB dynamoDb = new DynamoDB(client);
-        ReservationRepository reservationRepository = new DynamoDbReservationRepository(dynamoDb);
-        BookRepository bookRepository = new DynamoDbBookRepository(dynamoDb);
+        ReservationRepository reservationRepository = new DynamoDbReservationRepository(client);
+        BookRepository bookRepository = new DynamoDbBookRepository(client);
         bookService = new DynamoDbBookService(bookRepository);
         reservationService = new DynamoDbReservationService(reservationRepository, bookRepository);
     }

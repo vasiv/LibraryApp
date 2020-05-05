@@ -6,6 +6,7 @@ import pl.kielce.tu.libraryApp.model.User;
 import pl.kielce.tu.libraryApp.repository.BookRepository;
 import pl.kielce.tu.libraryApp.repository.ReservationRepository;
 import pl.kielce.tu.libraryApp.service.ReservationService;
+import pl.kielce.tu.libraryApp.session.Session;
 
 import java.util.List;
 
@@ -24,7 +25,16 @@ public class DynamoDbReservationService implements ReservationService {
 
     @Override
     public String makeReservation(Book book) {
-        return null;
+        int bookQuantityInLibrary = book.getQuantity();
+        if(book.getQuantity() <= 0) {
+            return "Cannot reserve book if it's unavailable in a library...";
+        }
+        User loggedUser = Session.getUser();
+        Reservation reservation = new Reservation(loggedUser, book);
+        reservationRepository.add(reservation);
+        book.setQuantity(--bookQuantityInLibrary);
+        bookRepository.update(book);
+        return "Reservation created!";
     }
 
     @Override
