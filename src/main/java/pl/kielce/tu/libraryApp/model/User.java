@@ -5,6 +5,7 @@ import pl.kielce.tu.libraryApp.model.enumeration.Role;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * @author ciepluchs
@@ -37,7 +38,32 @@ public class User implements Serializable, Comparable<User> {
         }
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return personalId.equals(user.personalId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(personalId);
+    }
+
     public List<Role> getRoles() {
         return roles;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getPersonalId() {
+        return personalId;
     }
 }

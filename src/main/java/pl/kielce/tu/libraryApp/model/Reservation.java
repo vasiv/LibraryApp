@@ -14,12 +14,28 @@ public class Reservation implements Serializable {
     private User reservationOwner;
     private Book reservedBook;
     private ZonedDateTime creationDate;
-    private ZonedDateTime reseravationDue;
+    private ZonedDateTime reservationDue;
 
     public Reservation(User reservationOwner, Book reservedBook) {
         this.reservationOwner = reservationOwner;
         this.reservedBook = reservedBook;
         creationDate = ZonedDateTime.now();
-        reseravationDue = creationDate.plusDays(RESERVATION_PERIOD_IN_DAYS);
+        reservationDue = creationDate.plusDays(RESERVATION_PERIOD_IN_DAYS);
+    }
+
+    public User getReservationOwner() {
+        return reservationOwner;
+    }
+
+    public Book getReservedBook() {
+        return reservedBook;
+    }
+
+    public ZonedDateTime getCreationDate() {
+        return creationDate;
+    }
+
+    public ZonedDateTime getReservationDue() {
+        return reservationDue;
     }
 }

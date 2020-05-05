@@ -1,4 +1,4 @@
-package pl.kielce.tu.libraryApp.action.book;
+package pl.kielce.tu.libraryApp.action.reservation;
 
 import pl.kielce.tu.libraryApp.action.Action;
 import pl.kielce.tu.libraryApp.config.Config;

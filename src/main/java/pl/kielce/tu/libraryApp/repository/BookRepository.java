@@ -4,6 +4,7 @@ import com.hazelcast.query.Predicate;
 import pl.kielce.tu.libraryApp.model.Book;
 
 import java.util.List;
+import java.util.Map;
 
 public interface BookRepository {
 
@@ -11,7 +12,7 @@ public interface BookRepository {
 
     List<Book> findAll();
 
-    List<Book> findBy(List<Predicate> predicates);
+    List<Book> findBy(Map<String, Object> searchCriteria);
 
     void update(Book book);
 //    void delete(Persistable persistable);

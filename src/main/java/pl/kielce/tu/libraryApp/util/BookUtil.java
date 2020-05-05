@@ -36,7 +36,7 @@ public abstract class BookUtil {
             int quantity = book.getQuantity();
             sb.append(books.indexOf(book)+1);
             sb.append(SPACE_DELIMITER.repeat(9 - sb.length())).append(title);
-            sb.append(SPACE_DELIMITER.repeat(TABLE_WIDTH - title.length())).append(author);
+            sb.append(SPACE_DELIMITER.repeat(TABLE_WIDTH - author.length())).append(author);
             sb.append(SPACE_DELIMITER.repeat(TABLE_WIDTH - genre.length())).append(genre);
             sb.append(SPACE_DELIMITER.repeat(TABLE_WIDTH - isbn.length())).append(isbn);
             sb.append(SPACE_DELIMITER.repeat(TABLE_WIDTH - String.valueOf(quantity).length())).append(quantity);

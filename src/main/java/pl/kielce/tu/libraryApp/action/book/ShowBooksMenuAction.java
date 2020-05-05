@@ -12,15 +12,15 @@ import java.util.List;
 /**
  * @author ciepluchs
  */
-public class ShowBooksAction implements Action {
+public class ShowBooksMenuAction implements Action {
 
     private static final String HEADER = "################################################## BOOKS ##################################################";
     private static final List<Role> ALLOWED_ROLES = Arrays.asList(Role.READER, Role.LIBRARIST, Role.ADMINISTRATOR);
     private static final String DISPLAY_NAME = "BOOKS";
     private List<Action> subActions;
 
-    public ShowBooksAction(Config config) {
-        subActions = Arrays.asList(new ShowAllBooksAction(config), new SearchBooks(config));
+    public ShowBooksMenuAction(Config config) {
+        subActions = Arrays.asList(new ShowAllBooksAction(config), new SearchBooks(config), new AddBookAction(config));
     }
 
     @Override

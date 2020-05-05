@@ -7,6 +7,9 @@ import java.util.List;
 
 public interface ReservationRepository {
 
+    List<Reservation> findAll();
+
     void add(Reservation reservation);
-    List<Reservation> getUserReservations(User user);
+
+    List<Reservation> findByOwner(User user);
 }

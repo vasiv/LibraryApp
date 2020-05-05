@@ -35,21 +35,6 @@ public class HazelcastBookService implements BookService {
 
     @Override
     public List<Book> getBooksBySearchCriteria(Map<String, Object> searchCriteria) {
-        List<Predicate> predicates = transformSearchCriteriaToPredicates(searchCriteria);
-        return bookRepository.findBy(predicates);
-    }
-
-    private List<Predicate> transformSearchCriteriaToPredicates(Map<String, Object> searchCriteria) {
-        List<Predicate> predicates = new ArrayList<>();
-        searchCriteria.forEach((key, value) -> {
-            if (value instanceof Genre) {
-                Predicate<String, Genre> genrePredicate = Predicates.equal(key.toLowerCase(), (Genre) value);
-                predicates.add(genrePredicate);
-            } else if (value instanceof String && StringUtils.isNotEmpty((String) value)) {
-                Predicate<String, String> predicate = Predicates.equal(key.toLowerCase(), (String) value);
-                predicates.add(predicate);
-            }
-        });
-        return predicates;
+        return bookRepository.findBy(searchCriteria);
     }
 }

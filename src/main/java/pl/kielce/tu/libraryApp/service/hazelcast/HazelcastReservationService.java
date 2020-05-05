@@ -10,6 +10,8 @@ import pl.kielce.tu.libraryApp.service.BookService;
 import pl.kielce.tu.libraryApp.service.ReservationService;
 import pl.kielce.tu.libraryApp.session.Session;
 
+import java.util.List;
+
 /**
  * @author ciepluchs
  */
@@ -35,5 +37,15 @@ public class HazelcastReservationService implements ReservationService {
         book.setQuantity(--bookQuantityInLibrary);
         bookRepository.update(book);
         return "Reservation created!";
+    }
+
+    @Override
+    public List<Reservation> getAllReservations() {
+        return reservationRepository.findAll();
+    }
+
+    @Override
+    public List<Reservation> getReservationsByOwner(User owner) {
+        return reservationRepository.findByOwner(owner);
     }
 }

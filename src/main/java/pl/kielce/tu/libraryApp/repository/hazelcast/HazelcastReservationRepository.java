@@ -34,9 +34,13 @@ public class HazelcastReservationRepository implements ReservationRepository {
     }
 
     @Override
-    public List<Reservation> getUserReservations(User user) {
+    public List<Reservation> findByOwner(User user) {
         Predicate<String, User> reservationOwnerPredicate = Predicates.equal(RESERVATION_OWNER, user);
         return new ArrayList<>(map.values(Predicates.and(reservationOwnerPredicate)));
     }
 
+    @Override
+    public List<Reservation> findAll() {
+        return new ArrayList<>(map.values());
+    }
 }
