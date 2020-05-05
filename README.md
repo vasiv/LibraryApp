@@ -3,5 +3,6 @@ Simple console application for university classes (the goal is to become acquain
 
 run:
   can be run by gradle task
+  
 configuration:
   set 'store' property with value: dynamodb or hazelcast - it defines repository layer
